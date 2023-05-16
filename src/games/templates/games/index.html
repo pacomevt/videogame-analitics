@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="l-section">
+        <h1 class="u-title">Products</h1>
+    </section>
+
+
+    <section class="l-section">
+        <div class="c-search">
+            <form class="c-search__form" method="POST" action="{% url 'games-index' %}">
+                {% csrf_token %}
+                <div class="c-search__container">
+                    <label class="c-search__label" for="search">Type here :</label>
+                    <input class="c-search__input" id="search" name="search" type="text" value="{{ search }}">
+                    <button class="c-search__submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="l-section">
+        <ul class="l-game-list">
+            {% for item in items %}
+                <li class="c-game-item">
+                    <a class="c-game-item__container" href="{% url 'game-detail' item.game.slug %}">
+                        <img class="c-game-item__image" src="{{ item.game.image }}" alt="{{ item.game.name }}">
+                        <span class="c-game-item__discount">{{ item.datas.discount }} %</span>
+                    </a>
+                    <h3 class="c-game-item__name">{{ item.game.name }}</h3>
+                    <h3 class="c-game-item__name">{{ item.datas.price }} €</h3>
+                    
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+
+    <section class="l-section">
+        <div class="c-pagination">
+            {% if games.has_previous %}
+            <a class="c-pagination__button" href="?page=1{% if search %}&search={{ search }}{% endif %}">1</a>
+            <a class="c-pagination__button" href="?page={{ games.previous_page_number }}{% if search %}&search={{ search }}{% endif %}">Previous</a>
+            {% endif %}
+            <span class="c-pagination__button c-pagintation__button--active">{{ games.number }}</span>
+            {% if games.has_next %}
+            <a class="c-pagination__button" href="?page={{ games.next_page_number }}{% if search %}&search={{ search }}{% endif %}">Next</a>
+            <a class="c-pagination__button" href="?page={{ games.paginator.num_pages }}{% if search %}&search={{ search }}{% endif %}">{{ games.paginator.num_pages }}</a>
+            {% endif %}
+        </div>
+    </section>
+    
+{% endblock %}

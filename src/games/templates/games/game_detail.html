@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section class="l-section">
+        <div class="c-hero">
+            <img src="{{game.image}}" alt="{{ game.name }}">
+            <h1>{{ game.name }}</h1>
+        </div>
+    </section>
+    
+    <h3>{{ game.name }}</h3>
+
+    {% for game_data in game_datas %}
+    <div class="datas">
+        <p>Price: {{ game_data.price }} €</p>
+        <p>Discount: -{{ game_data.discount }} %</p>
+        <p>Date: {{ game_data.date }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

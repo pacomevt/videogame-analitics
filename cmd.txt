@@ -1,0 +1,8 @@
+
+# celery broker
+celery -A base worker --loglevel=info --pool=solo
+
+
+
+cd D:\Python\videogames-website
+sass --watch scss/main.scss src/static/css/style.css

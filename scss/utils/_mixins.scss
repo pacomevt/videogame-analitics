@@ -1,0 +1,47 @@
+@mixin grid($col) {
+  display: grid;
+  grid-template-columns: repeat($col, 1fr);
+  gap: 0rem 2rem;
+  align-items: start;
+}
+
+@mixin position($top, $right: $top, $bottom: $top, $left: $right) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin no-margin() {
+	&:first-of-type {
+		margin-left: 0;
+	}
+	&:last-of-type {
+		margin-right: 0;
+	}
+}
+
+@mixin reset-appearance() {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+  -webkit-border-radius: 0px;
+}
+
+@mixin bt-reset-appearance() {
+	@include reset-appearance();
+	border: none;
+  border-radius: none;
+	background: none;
+	cursor: pointer;
+	outline: none;
+  resize: none;
+}
+
+@mixin disable-select () {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}

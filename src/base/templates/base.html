@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>WebsitePy</title>
+</head>
+<body>
+    <header class="c-header">
+        <div class="c-header__container">
+            <a class="c-header__logo" href="/">
+                <svg class="c-header__svg" id="logo" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 48.79">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: #1d1d1b;
+                        }
+                      </style>
+                    </defs>
+                    <g id="Calque_1-2" data-name="Calque 1">
+                      <path class="cls-1" d="m50,25.04c0,11.05-7.16,20.43-17.09,23.75,1.32-2.78,2.06-5.9,2.06-9.18,0-11.82-9.58-21.4-21.4-21.4-5.16,0-9.88,1.82-13.58,4.86C1.01,10.16,11.8,0,24.96,0c13.83,0,25.04,11.21,25.04,25.04Z"/>
+                    </g>
+                  </svg>
+                </a>
+            <form class="c-navbar" action="{% url 'games-index' %}">
+                {% csrf_token %}
+                <div class="c-navbar__bar">
+                    <input class="c-navbar__input" placeholder="Search for a game" name="search" id="search" type="text">
+                    <button class="c-navbar__submit" type="submit">
+                        <svg class="c-navbar__svg" width="700pt" height="700pt" version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g>
+                             <path d="m578.48 488.88-97.441-97.438c31.922-36.398 50.961-84 50.961-136.08 0-114.24-92.961-207.2-207.2-207.2s-207.2 92.961-207.2 207.2 92.961 207.2 207.2 207.2c52.641 0 100.24-19.602 136.64-51.52l96.879 97.441c2.8008 2.8008 6.7188 3.9219 10.078 3.9219 3.3594 0 7.2812-1.1211 10.078-3.9219 5.6016-5.043 5.6016-14.004 0.003907-19.605zm-253.68-54.879c-98.559 0-179.2-80.641-179.2-179.2 0-98.559 80.078-179.2 179.2-179.2 99.121 0 179.2 80.641 179.2 179.2 0 98.559-80.641 179.2-179.2 179.2z"/>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <div class="c-header__menus">
+                <nav class="c-header__nav">
+                    <ul class="c-header__list">
+                        <li class="c-header__item"><a class="c-header__link" href="/">Home</a></li>
+                        <li class="c-header__item"><a class="c-header__link" href="/games">Games</a></li>
+                        <li class="c-header__item"><a class="c-header__link" href="/scraper">Scraper</a></li>
+                    </ul>
+                </nav>
+                <div class="c-account">
+                    <a href="" class="c-account__item">Login</a>
+                    <a href="" class="c-account__item">Register</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
