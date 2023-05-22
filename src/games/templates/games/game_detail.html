@@ -2,20 +2,70 @@
 
 {% block content %}
 
+<main class="l-game">
     <section class="l-section">
-        <div class="c-hero">
-            <img src="{{game.image}}" alt="{{ game.name }}">
-            <h1>{{ game.name }}</h1>
+        <div class="c-game-info">
+            <div class="c-game-info__image">
+                <img class="c-game-info__poster" src="{{game.image}}" alt="{{ game.name }}">
+            </div>
+            <div class="c-game-info__container">
+                <h1 class="c-game-info__title || u-title">{{ game.name }}</h1>
+                <p class="c-game-info__description">{{ game.description }} Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p class="c-game-info__price">Price: {{ game_datas.0.price }} €</p>
+                <p class="c-game-info__discount">Discount: {{ game_datas.0.discount }} %</p>
+                <a href="{{ game.link }}">Acheter</a>
+            </div>
         </div>
     </section>
-    
-    <h3>{{ game.name }}</h3>
+    <section class="l-section">
+        <canvas id="price-chart"></canvas>
+    </section>
+</main>
+{% endblock %}
 
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('price-chart').getContext('2d')
+    let datas = []
     {% for game_data in game_datas %}
-    <div class="datas">
-        <p>Price: {{ game_data.price }} €</p>
-        <p>Discount: -{{ game_data.discount }} %</p>
-        <p>Date: {{ game_data.date }}</p>
-    </div>
-{% endfor %}
+        datas.push(
+            data = {
+                price: parseFloat("{{ game_data.price }}".replace(',', '.')),
+                discount:  parseFloat("{{ game_data.discount }}".replace(',', '.')),
+                date: new Date("{{ game_data.date|date:'Y-m-d' }}")
+            }
+        )
+    {% endfor %}
+
+    datas.reverse()
+
+    const format = (date) => {
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+    }
+
+    let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: datas.map(data => (format(data.date))),
+            datasets: [{
+                label: 'Price',
+                data: datas.map(data => data.price),
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    })
+    
+    
+</script>
 {% endblock %}

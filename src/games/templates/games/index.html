@@ -2,21 +2,7 @@
 
 {% block content %}
     <section class="l-section">
-        <h1 class="u-title">Products</h1>
-    </section>
-
-
-    <section class="l-section">
-        <div class="c-search">
-            <form class="c-search__form" method="POST" action="{% url 'games-index' %}">
-                {% csrf_token %}
-                <div class="c-search__container">
-                    <label class="c-search__label" for="search">Type here :</label>
-                    <input class="c-search__input" id="search" name="search" type="text" value="{{ search }}">
-                    <button class="c-search__submit">Search</button>
-                </div>
-            </form>
-        </div>
+        <h1 class="u-title">Games {% if search %} : search for {{ search }}{% endif %}</h1>
     </section>
 
     <section class="l-section">

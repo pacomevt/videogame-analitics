@@ -11,7 +11,10 @@ def index(request):
     games = Game.objects.all().order_by('name')
     if search:
         games = Game.objects.filter(name__contains=search).order_by('name')
-
+    else :
+        search = request.GET.get('search')
+        if search:
+            games = Game.objects.filter(name__contains=search).order_by('name')
     paginator = Paginator(games, 21)
     page = request.GET.get('page')
     game_list = paginator.get_page(page)

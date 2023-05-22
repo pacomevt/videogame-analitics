@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>WebsitePy</title>
+    <title>Game Analyser</title>
 </head>
 <body>
     <header class="c-header">
@@ -25,10 +25,10 @@
                     </g>
                   </svg>
                 </a>
-            <form class="c-navbar" action="{% url 'games-index' %}">
+            <form class="c-navbar" action="{% url 'games-index' %}" method="POST">
                 {% csrf_token %}
                 <div class="c-navbar__bar">
-                    <input class="c-navbar__input" placeholder="Search for a game" name="search" id="search" type="text">
+                    <input class="c-navbar__input" placeholder="Search for a game" name="search" id="search" type="text" value="{% if search %}{{ search }}{% endif %}">
                     <button class="c-navbar__submit" type="submit">
                         <svg class="c-navbar__svg" width="700pt" height="700pt" version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <g>
@@ -56,5 +56,7 @@
     {% block content %}
     {% endblock %}
     <script src="{% static 'js/main.js' %}"></script>
+    {% block script %}
+    {% endblock %}
 </body>
 </html>
