@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'scraper',
     'games',
+    'accounts',
     'django_celery_results',
 ]
 
@@ -157,3 +158,6 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+
+AUTH_USER_MODEL = 'accounts.User'

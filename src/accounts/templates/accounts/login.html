@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Users Login</h1>
+    <form method="POST" action="{% url 'users-login' %}" class=" || u-form">
+        {% csrf_token %}
+        <div class="|| u-form-row">
+            <label for="username">Username :</label>
+            <input id="username" name="username" type="text" class=" || u-form-input">
+        </div>
+        <div class="|| u-form-row">
+            <label for="password">Password :</label>
+            <input id="password" name="password" type="password" class=" || u-form-input">
+        </div>
+        <button type="submit">Connection</button>
+    </form>
+{% endblock %}

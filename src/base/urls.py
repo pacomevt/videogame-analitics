@@ -6,6 +6,7 @@ from .views import index
 urlpatterns = [
     path('', index, name='index'),
     path('games/', include('games.urls')),
+    path('accounts/', include('accounts.urls')),
     path('scraper/', include('scraper.urls')),
     path('admin/', admin.site.urls),
 ]
